@@ -5,6 +5,9 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>Almacén de Materiales | NexusCode</title>
   <script type="module" crossorigin src="/corralondemateriales/assets/index-EsP4IzT8.js"></script>
   <link rel="stylesheet" crossorigin href="/corralondemateriales/assets/index-8pcQvTdp.css">
@@ -13,12 +16,12 @@
 <body>
   <div id="root"></div>
   <script>
-    // Force unregister previous service workers to fix blank screen in Chrome
+    // Force cleanup and refresh for mobile browsers
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.getRegistrations().then(function (registrations) {
-        for (let registration of registrations) {
-          registration.unregister();
-          console.log('Service Worker unregistered');
+        if (registrations.length > 0) {
+          for (let reg of registrations) { reg.unregister(); }
+          window.location.reload(true);
         }
       });
     }
