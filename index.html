@@ -12,6 +12,17 @@
 
 <body>
   <div id="root"></div>
+  <script>
+    // Force unregister previous service workers to fix blank screen in Chrome
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (let registration of registrations) {
+          registration.unregister();
+          console.log('Service Worker unregistered');
+        }
+      });
+    }
+  </script>
 </body>
 
 </html>
